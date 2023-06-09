@@ -2,11 +2,12 @@
 #include <iostream>
 #include "MathExpression.h"
 #include "Constant.h"
+#include <vector>
 
 class Power: public MathExpression
 {
 private:
-	MathExpression* _var;
+	std::vector<MathExpression*> _var;
 	int _pow=0;
 
 	const double fastPow() const;
@@ -14,7 +15,7 @@ private:
 public:
 
 	Power() = default;
-	Power(MathExpression* var, const int pow) : _var(var),_pow(pow) {}
+	Power(std::vector<MathExpression*> var, const int pow) : _var(var),_pow(pow) {}
 	~Power();
 
 	static const double fastPow(double base, int exp);

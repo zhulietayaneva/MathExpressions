@@ -4,7 +4,8 @@
 
 
 Sine::~Sine() {
-    delete& _var;
+   
+    _var.erase(_var.begin(), _var.end());
 }
 
 const int Sine::factorial(int n) const {
@@ -15,8 +16,11 @@ const int Sine::factorial(int n) const {
 }
 
 const double Sine::evaluate() const {
-
-    double x = _var->evaluate();
+    double x = 0;
+    for (auto& v : _var)
+    {
+        x += v->evaluate();
+    }
     double result = 0.0;
     
     for (int n = 0; n <= _approx; ++n) {
@@ -29,7 +33,18 @@ const double Sine::evaluate() const {
 }
 const void Sine::print() const {
 
-    std::cout << "sin(";
-    _var->print();
-    std::cout << ") = "<<this->evaluate();
+    std::cout << "sin( ";
+    for (size_t i = 0; i < _var.size(); i++)
+    {
+        if (i!=_var.size()-1)
+        {
+            _var[i]->print();
+            std::cout << " + ";
+        }
+        else
+        {
+            _var[i]->print();
+        }
+    }
+    std::cout << " ) = "<<this->evaluate();
 }

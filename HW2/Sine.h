@@ -1,12 +1,13 @@
 #pragma once
 #include "MathExpression.h"
 #include "Constant.h"
+#include <vector>
 
 class Sine: public MathExpression {
 
 private:
 
-	MathExpression* _var;
+	std::vector<MathExpression*> _var;
 	int _approx = 1;
 
 	const int factorial(int n) const;
@@ -14,7 +15,7 @@ private:
 public:
 
 	Sine() = default;
-	Sine(MathExpression* var, int approx) :_var(var),_approx(approx) {}
+	Sine(std::vector<MathExpression*> var, int approx) :_var(var),_approx(approx) {}
 	~Sine();
 
 	const double evaluate() const override;

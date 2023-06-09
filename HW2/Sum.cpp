@@ -3,9 +3,7 @@
 
 
 Sum::~Sum() {
-    for (auto& variable : _variables) {
-        delete &variable;
-    }
+	_variables.erase(_variables.begin(), _variables.end());
 }
 
 const double Sum::evaluate() const
@@ -27,8 +25,7 @@ const void Sum::print() const
 			double next = _variables[i + 1]->evaluate();
 			if (next < 0)
 			{
-				std::cout << abs(curr) << " - "<<abs(next) << ")";
-				
+				std::cout << abs(curr) << " - "<<abs(next) << ")";				
 			}
 			else
 			{

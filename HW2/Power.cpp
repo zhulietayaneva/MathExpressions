@@ -3,7 +3,8 @@
 
 
 Power::~Power() {
-    delete &_var;
+
+    _var.erase(_var.begin(), _var.end());
 }
 
 const double Power::fastPow(double base, int exp) {
@@ -26,7 +27,11 @@ const double Power::fastPow(double base, int exp) {
     return (exp < 0) ? 1.0 / result : result;
 }
 const double Power::fastPow() const  {
-    double base = _var->evaluate();
+    double base = 0;
+    for (auto& i : _var)
+    {
+        base += i->evaluate();
+    }
     if (base == 0)
         return 1.0;
     else if (_pow > 0) {
@@ -52,7 +57,20 @@ const double Power::evaluate() const{
 }
 const void Power::print() const
 {
-	std::cout << _var->evaluate()<<"^"<<_pow;
+    std::cout << "( ";
+    for (size_t i = 0; i < _var.size(); i++)
+    {
+        if (i != _var.size() - 1)
+        {
+            _var[i]->print();
+            std::cout << " + ";
+        }
+        else
+        {
+            _var[i]->print();
+        }
+    }
+	std::cout <<" )^"<<_pow;
 }
 
   

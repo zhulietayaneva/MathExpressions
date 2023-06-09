@@ -3,9 +3,7 @@
 
 Product::~Product()
 {
-	for (auto& var : _variables) {
-		delete var;
-	}
+	_variables.erase(_variables.begin(), _variables.end());
 }
 
 const double Product::evaluate() const

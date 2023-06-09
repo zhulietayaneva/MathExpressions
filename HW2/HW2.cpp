@@ -8,10 +8,12 @@
 
 int main() {
     Constant constant(5);
+    Constant constant2(-4);
+    Constant constant3(1560);
     Sum sum;
     sum.addElement(constant);
-    sum.addElement(*new Constant(4.0));
-    sum.addElement(*new Constant(-7.0));
+    sum.addElement(constant2);
+    sum.addElement(constant3);
     std::cout << "Sum: " << std::endl;
     sum.print();
     std::cout << std::endl<< "-----------------------------" << std::endl;
@@ -23,8 +25,13 @@ int main() {
     product.print();
     std::cout << std::endl << "-----------------------------" << std::endl;
 
-    Power power(&product, 3);
-    Sine sine(&power, 4);
+    std::vector<MathExpression*> v2;
+    v2.push_back(&product);
+    v2.push_back(&sum);
+    Power power(v2, 3);
+    std::vector<MathExpression*> v;
+    v.push_back(&power);
+    Sine sine(v, 4);
     std::cout << "Power: " << std::endl;
     power.print();
     std::cout << std::endl << "-----------------------------" << std::endl;
@@ -32,6 +39,8 @@ int main() {
     std::cout << "Sine: " << std::endl;
     sine.print();
     std::cout << std::endl << "-----------------------------" << std::endl;
+
+
 
     return 0;
 }
