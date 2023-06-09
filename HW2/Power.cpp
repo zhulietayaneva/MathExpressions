@@ -60,15 +60,13 @@ const void Power::print() const
     std::cout << "( ";
     for (size_t i = 0; i < _var.size(); i++)
     {
+        _var[i]->print();
+
         if (i != _var.size() - 1)
-        {
-            _var[i]->print();
+        {            
             std::cout << " + ";
         }
-        else
-        {
-            _var[i]->print();
-        }
+       
     }
 	std::cout <<" )^"<<_pow;
 }

@@ -18,7 +18,7 @@ const void Sum::print() const
 {
 	std::cout << "(";
 	for (size_t i = 0; i < _variables.size()-1; i++)
-	{
+	{			
 		double curr = _variables[i]->evaluate();
 		if (i == _variables.size()-2)
 		{
